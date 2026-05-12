@@ -1,0 +1,18 @@
+.next/
+node_modules/
+dist/
+.env.local
+.env
+*.tsbuildinfo
+
+# Logs
+*.log
+dev.log
+dev.err.log
+npm-install.log
+
+# Local IDE / agent config
+.claude/
+
+# Knowledge graph artifacts (regenerable)
+graphify-out/

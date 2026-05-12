@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Cafe Portal — Design System v2.4
+   Based on approved design (Cafe Portal (3).html)
+   Accent: Blue #2B5BE5 | Font: Instrument Sans + Instrument Serif + JetBrains Mono
+───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Backgrounds & surfaces */
+  --bg:              #F4F6FB;
+  --surface:         #FFFFFF;
+  --surface-warm:    #F9FAFD;
+
+  /* Ink (text / icons) */
+  --ink:             #0E1330;
+  --ink-2:           #2A315A;
+  --ink-3:           #5E6689;
+  --ink-4:           #8E96B6;
+  --ink-5:           #C4CBE2;
+
+  /* Lines / dividers */
+  --line:            #E3E7F2;
+  --line-2:          #EEF1F8;
+
+  /* Accent — blue */
+  --accent:          #2B5BE5;
+  --accent-soft:     #E4ECFE;
+  --accent-ink:      #1E45B8;
+
+  /* Semantic status */
+  --ok:              #1E8F5A;
+  --ok-soft:         #D9F3E5;
+  --warn:            #B47A1A;
+  --warn-soft:       #FBEFD1;
+  --danger:          #C83D4E;
+  --danger-soft:     #FADFE2;
+  --info:            #2B5BE5;
+  --info-soft:       #E4ECFE;
+
+  /* Border radius */
+  --radius-xs:       6px;
+  --radius-sm:       8px;
+  --radius-md:       10px;
+  --radius-lg:       14px;
+  --radius-xl:       18px;
+
+  /* Shadows */
+  --shadow-1:        0 1px 0 rgba(28,27,25,0.03), 0 1px 2px rgba(28,27,25,0.04);
+  --shadow-2:        0 1px 0 rgba(28,27,25,0.04), 0 8px 24px -12px rgba(28,27,25,0.10);
+
+  /* ── Legacy aliases (used by catalogue, billing, other pages) ── */
+  --portal-primary:    #2B5BE5;
+  --portal-secondary:  #6B8FFF;
+  --portal-gradient:   linear-gradient(135deg, #2B5BE5, #1E45B8);
+  --portal-surface:    #E4ECFE;
+  --portal-border:     #C4CBE2;
+  --text-primary:      var(--ink);
+  --text-secondary:    var(--ink-3);
+  --text-muted:        var(--ink-4);
+  --border:            var(--line);
+  --border-strong:     var(--ink-5);
+  --accent-hover:      #1E45B8;
+  --surface-subtle:    var(--surface-warm);
+  --surface-raised:    #EEF1F8;
+
+  /* Legacy badge colours */
+  --badge-pending-bg:     #FBEFD1;   --badge-pending-text:   #B47A1A;
+  --badge-accepted-bg:    #D9F3E5;   --badge-accepted-text:  #1E8F5A;
+  --badge-rejected-bg:    #FADFE2;   --badge-rejected-text:  #C83D4E;
+  --badge-dispatched-bg:  #E4ECFE;   --badge-dispatched-text:#1E45B8;
+  --badge-delivered-bg:   #D9F3E5;   --badge-delivered-text: #1E8F5A;
+  --badge-paid-bg:        #D9F3E5;   --badge-paid-text:      #1E8F5A;
+  --badge-unpaid-bg:      #FBEFD1;   --badge-unpaid-text:    #B47A1A;
+  --badge-overdue-bg:     #FADFE2;   --badge-overdue-text:   #C83D4E;
+  --badge-weekly-bg:      #EDE9FE;   --badge-weekly-text:    #6D28D9;
+  --badge-monthly-bg:     #E4ECFE;   --badge-monthly-text:   #1E45B8;
+  --badge-trial-bg:       #E4ECFE;   --badge-trial-text:     #2B5BE5;
+
+  /* Font vars (injected by next/font, fallback here) */
+  --font-sans:  'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, monospace;
+
+  --container-max: 1200px;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  font-feature-settings: "ss01", "cv11", "ss03";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+button { font-family: inherit; border: 0; background: none; cursor: pointer; color: inherit; padding: 0; }
+input  { font-family: inherit; color: inherit; }
+a      { color: inherit; text-decoration: none; }
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #D2D9EC; border-radius: 8px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ── Focus ring ─────────────────────────────────────────────────────────── */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+/* ── Typography utilities ───────────────────────────────────────────────── */
+.serif { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.01em; }
+.mono  { font-family: var(--font-mono); font-feature-settings: "ss02"; }
+.tnum  { font-variant-numeric: tabular-nums; }
+.eyebrow { font-size: 10.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-4); }
+
+/* ── Layout utilities ───────────────────────────────────────────────────── */
+.container { max-width: var(--container-max); margin-inline: auto; padding-inline: 32px; }
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+}
+.card.warm { background: var(--surface-warm); }
+
+/* ── Status badges ──────────────────────────────────────────────────────── */
+.status {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 9px 3px 8px; border-radius: 999px;
+  font-size: 11.5px; font-weight: 500; letter-spacing: 0.005em;
+}
+.status .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.status.ok      { background: var(--ok-soft);     color: var(--ok); }
+.status.ok      .dot { background: var(--ok); }
+.status.warn    { background: var(--warn-soft);   color: var(--warn); }
+.status.warn    .dot { background: var(--warn); }
+.status.danger  { background: var(--danger-soft); color: var(--danger); }
+.status.danger  .dot { background: var(--danger); }
+.status.info    { background: var(--info-soft);   color: var(--info); }
+.status.info    .dot { background: var(--info); }
+.status.neutral { background: var(--line-2);      color: var(--ink-3); }
+.status.neutral .dot { background: var(--ink-4); }
+.status.accent  { background: var(--accent-soft); color: var(--accent-ink); }
+.status.accent  .dot { background: var(--accent); }
+
+/* ── Trend pills ─────────────────────────────────────────────────────────── */
+.trend { display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 999px; font-size: 11.5px; font-weight: 500; }
+.trend.up   { color: var(--ok);     background: var(--ok-soft); }
+.trend.down { color: var(--danger); background: var(--danger-soft); }
+.trend.flat { color: var(--ink-3);  background: var(--line-2); }
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+.btn-primary {
+  height: 38px; padding: 0 18px; border-radius: 999px;
+  background: linear-gradient(180deg, #3E6CF0 0%, var(--accent) 100%);
+  color: #fff; font-size: 13px; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: rgba(255,255,255,0.25) 0 1px 0 inset, rgba(43,91,229,0.4) 0 4px 12px -2px;
+  transition: transform 0.1s, box-shadow 0.2s, filter 0.2s;
+  border: 0; cursor: pointer;
+}
+.btn-primary:hover { filter: brightness(1.06); box-shadow: rgba(255,255,255,0.25) 0 1px 0 inset, rgba(43,91,229,0.5) 0 6px 16px -2px; }
+.btn-primary:active { transform: translateY(1px); }
+
+.icon-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-2);
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.icon-button:hover { background: var(--surface-warm); border-color: #C9D2EB; }
+.icon-button:active { transform: scale(0.98); }
+
+.tb-btn {
+  height: 32px; padding: 0 11px; border-radius: var(--radius-sm);
+  background: var(--surface); border: 1px solid var(--line);
+  font-size: 12.5px; color: var(--ink-2); font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: 0.15s; cursor: pointer;
+}
+.tb-btn:hover { background: var(--surface-warm); border-color: #DAD7CF; }
+.tb-btn.primary { background: var(--ink); color: #FBFAF7; border-color: var(--ink); }
+.tb-btn.primary:hover { background: #000; }
+
+/* ── Tab rows ────────────────────────────────────────────────────────────── */
+.tab-row { display: flex; gap: 0; border-bottom: 1px solid var(--line); padding: 0 6px; }
+.tab { padding: 10px 14px; font-size: 13px; font-weight: 500; color: var(--ink-3); border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; background: none; border-top: 0; border-left: 0; border-right: 0; transition: color 0.15s; }
+.tab .cnt { font-size: 11px; color: var(--ink-4); background: var(--line-2); padding: 1px 6px; border-radius: 999px; }
+.tab:hover { color: var(--ink); }
+.tab.active { color: var(--ink); border-bottom-color: var(--ink); }
+.tab.active .cnt { color: var(--ink); background: var(--line); }
+
+/* ── Filter pills ────────────────────────────────────────────────────────── */
+.filter-pill { height: 28px; padding: 0 11px; border-radius: 999px; background: transparent; color: var(--ink-3); font-size: 12.5px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px; border: 1px solid transparent; transition: 0.15s; cursor: pointer; }
+.filter-pill:hover { background: var(--surface-warm); color: var(--ink); }
+.filter-pill.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ── Chip ─────────────────────────────────────────────────────────────────── */
+.chip { height: 30px; padding: 0 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-size: 12.5px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 8px; }
+.chip.accent { border-color: var(--accent-soft); background: #EFF4FF; color: var(--accent-ink); }
+.pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); position: relative; flex-shrink: 0; }
+.pulse-dot::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: var(--ok); opacity: 0.25; animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{ transform: scale(1); opacity: 0.25; } 50%{ transform: scale(1.6); opacity: 0; } }
+
+/* ── Avatar ──────────────────────────────────────────────────────────────── */
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #B4C7FF, var(--accent)); color: #fff; font-weight: 600; font-size: 12.5px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid var(--surface); letter-spacing: 0.02em; box-shadow: rgba(43,91,229,0.25) 0 2px 6px; flex-shrink: 0; }
+
+/* ── Supplier marks ───────────────────────────────────────────────────────── */
+.supplier-mark { border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 11.5px; letter-spacing: 0.02em; flex-shrink: 0; }
+.supplier-mark.c-1 { background: #E4ECFE; color: #1E45B8; border: 1px solid #CFD9FC; }
+.supplier-mark.c-2 { background: #D9F3E5; color: #166B44; border: 1px solid #BFE8D3; }
+.supplier-mark.c-3 { background: #FBEFD1; color: #8F5F10; border: 1px solid #F3E0B2; }
+.supplier-mark.c-4 { background: #F0E4FB; color: #6B2AB8; border: 1px solid #E1D1F4; }
+.supplier-mark.c-5 { background: #FADDE2; color: #A03145; border: 1px solid #F4C9CE; }
+.supplier-mark.c-6 { background: #D9F3E5; color: #1E8F5A; border: 1px solid #BFE8D3; }
+
+/* ── Progress bar ─────────────────────────────────────────────────────────── */
+.progress-bar { height: 3px; background: var(--line-2); border-radius: 2px; overflow: hidden; }
+.progress-bar > span { display: block; height: 100%; border-radius: 2px; transition: width 0.6s; }
+.progress-bar > span.ok     { background: var(--ok); }
+.progress-bar > span.warn   { background: var(--warn); }
+.progress-bar > span.danger { background: var(--danger); }
+.progress-bar > span.accent { background: var(--accent); }
+
+/* ── Data table ────────────────────────────────────────────────────────────── */
+.orders-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.orders-table thead th { text-align: left; padding: 10px 16px; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-4); border-bottom: 1px solid var(--line-2); background: var(--surface-warm); }
+.orders-table thead th:first-child { padding-left: 22px; }
+.orders-table thead th:last-child  { padding-right: 22px; text-align: right; }
+.orders-table tbody td { padding: 14px 16px; border-bottom: 1px solid var(--line-2); font-size: 13px; color: var(--ink-2); vertical-align: middle; }
+.orders-table tbody td:first-child { padding-left: 22px; }
+.orders-table tbody td:last-child  { padding-right: 22px; text-align: right; }
+.orders-table tbody tr { transition: background 0.15s; cursor: pointer; }
+.orders-table tbody tr:hover { background: var(--surface-warm); }
+.orders-table tbody tr:last-child td { border-bottom: 0; }
+
+/* ── Legacy badge system (used by other pages) ───────────────────────────── */
+.badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+.badge-pending    { background: var(--badge-pending-bg);    color: var(--badge-pending-text); }
+.badge-accepted   { background: var(--badge-accepted-bg);   color: var(--badge-accepted-text); }
+.badge-rejected   { background: var(--badge-rejected-bg);   color: var(--badge-rejected-text); }
+.badge-dispatched { background: var(--badge-dispatched-bg); color: var(--badge-dispatched-text); }
+.badge-delivered  { background: var(--badge-delivered-bg);  color: var(--badge-delivered-text); }
+.badge-paid       { background: var(--badge-accepted-bg);   color: var(--badge-accepted-text); }
+.badge-unpaid     { background: var(--badge-pending-bg);    color: var(--badge-pending-text); }
+.badge-overdue    { background: var(--badge-rejected-bg);   color: var(--badge-rejected-text); }
+.badge-weekly     { background: var(--badge-weekly-bg);     color: var(--badge-weekly-text); }
+.badge-monthly    { background: var(--badge-monthly-bg);    color: var(--badge-monthly-text); }
+.badge-trial      { background: var(--badge-trial-bg);      color: var(--badge-trial-text); }
+
+/* ── Legacy button classes (other pages) ─────────────────────────────────── */
+.btn-ghost { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); border-radius: 7px; padding: 6px 12px; font-size: 10px; font-weight: 600; cursor: pointer; }
+.btn-secondary { background: var(--surface-warm); color: var(--ink); border: 1px solid var(--line); border-radius: 7px; padding: 8px 16px; font-size: 11px; font-weight: 600; cursor: pointer; }
+.btn-danger { background: var(--danger-soft); color: var(--danger); border: none; border-radius: 7px; padding: 6px 12px; font-size: 10px; font-weight: 600; cursor: pointer; }
+
+/* ── Legacy tab bar ──────────────────────────────────────────────────────── */
+.tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+.tab-item { padding: 6px 14px; font-size: 11px; font-weight: 500; color: var(--ink-3); border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; transition: color 100ms ease; }
+.tab-item.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+/* ── Legacy data-table ────────────────────────────────────────────────────── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-4); padding: 7px 11px; text-align: left; border-bottom: 1px solid var(--line); background: var(--surface-warm); }
+.data-table td { font-size: 11px; color: var(--ink); padding: 9px 11px; border-bottom: 1px solid var(--line-2); vertical-align: middle; }
+
+/* ── Dividers ─────────────────────────────────────────────────────────────── */
+.divider        { height: 1px; background: var(--line); }
+.divider-strong { height: 1px; background: var(--ink-5); }
+
+/* ── Mobile ───────────────────────────────────────────────────────────────── */
+.mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; height: 60px; background: var(--surface); border-top: 1px solid var(--line); z-index: 100; align-items: center; justify-content: space-around; padding: 0 8px; }
+.mobile-nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 10px; color: var(--ink-4); font-size: 9px; font-weight: 500; text-decoration: none; border-radius: 8px; transition: color 100ms ease; cursor: pointer; }
+.mobile-nav-item.active { color: var(--accent); }
+.mobile-nav-icon { font-size: 20px; }
+
+@media (max-width: 768px) {
+  .mobile-nav { display: flex; }
+  .desktop-sidebar { display: none !important; }
+  .main-with-sidebar { padding-bottom: 60px; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .desktop-sidebar { width: 56px !important; }
+  .sb-text, .sb-section-label, .side-link-label, .sb-badge { display: none !important; }
+  .side-link-nav { justify-content: center; padding: 8px !important; }
+}
+
+/* ── Shimmer skeleton ─────────────────────────────────────────────────────── */
+@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.shimmer { background: linear-gradient(90deg, var(--surface-warm) 25%, var(--line-2) 50%, var(--surface-warm) 75%); background-size: 400% 100%; animation: shimmer 1.4s infinite; border-radius: 4px; }
