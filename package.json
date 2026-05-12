@@ -1,5 +1,5 @@
 {
-  "name": "@gradient365/cafe",
+  "name": "old-cafe-dashboard",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,9 +13,7 @@
     "next": "15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "framer-motion": "^11.0.0",
-    "@gradient365/types": "file:../types",
-    "@gradient365/ui": "file:../ui"
+    "framer-motion": "^11.0.0"
   },
   "devDependencies": {
     "typescript": "^5.4.5",
